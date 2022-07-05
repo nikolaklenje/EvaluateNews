@@ -21,9 +21,10 @@ console.log(__dirname)
 
 
 // Set API
-const textapi =process.env.API_KEY
-
-
+const tapiKey =process.env.API_KEY
+const baseURL = 'https://api.meaningcloud.com/sentiment-2.1?'
+console.log(`Your API Key is ${process.env.API_KEY}`);
+let userInput = [] 
 
 console.log(__dirname)
 
@@ -32,11 +33,25 @@ app.get('/', function (req, res) {
     //res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
+app.get('/test', function (req, res) {
+    res.send(mockAPIResponse)
+})
+//Create Post route
+
+app.post('/api', async function(req, res) {
+    userInput = req.body.url;
+    console.log(`You entered: ${userInput}`);
+    const apiURL = `${baseURL}key=${apiKey}&url=${userInput}&lang=en`
+
+    const response = await fetch(apiURL)
+    const mcData = await response.json()
+    console.log(mcData)
+    res.send(mcData)
+    
+})
+
 // designates what port the app will listen to for incoming requests
 app.listen(8080, function () {
     console.log('Example app listening on port 8080!')
 })
 
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
-})
