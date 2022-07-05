@@ -1,10 +1,29 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 var path = require('path')
 const express = require('express')
+const bodyParser = require('body-parser')
+const fetch = require('node-fetch')
 const mockAPIResponse = require('./mockAPI.js')
-
+//start up instance of the app
 const app = express()
 
+const cors = require('cors');
+
+app.use(cors());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json());
 app.use(express.static('dist'))
+
+console.log(__dirname)
+
+
+// Set API
+const textapi =process.env.API_KEY
+
+
 
 console.log(__dirname)
 
