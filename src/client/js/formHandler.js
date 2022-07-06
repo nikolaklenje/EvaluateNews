@@ -2,8 +2,8 @@ function handleSubmit(event) {
     event.preventDefault()
 
     // check what text was put into the form field
-    let formText = document.getElementById('url').value
-
+    let formText = document.getElementById('url').value  
+    console.log("Test Test")
     if(Client.checkForURL(formText)) {
     console.log("::: Form Submitted :::")
 
